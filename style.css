@@ -152,7 +152,7 @@ nav
     background-repeat: no-repeat;
     background-size: cover;
     
-    margin-bottom: 2%;
+    margin-bottom: 10px;
     box-sizing: border-box;
 
     min-height: 30px;
@@ -168,11 +168,13 @@ nav
     margin-top: 5px;
 
     display: none;
+    cursor: pointer;
 }
 
 .listText
 {
     margin-left: 3%;
+    cursor: pointer;
 }
 
 footer
@@ -190,6 +192,51 @@ footer
 
     height: 40px;
     line-height: 40px;
+}
+
+#contactsLinks
+{
+    display: flex;
+    justify-content: center;
+    
+}
+
+#contactsLinks > a
+{
+    text-decoration: none;
+    color: inherit;
+
+    margin-left: 60px;
+}
+
+#li::marker
+{
+    max-height: 25px;
+}
+
+#liWhats
+{
+    list-style-image: url(assets/Whatsapp_logo_25.png);
+}
+
+#liInsta
+{
+    list-style-image: url(assets/Instagram-icon-25.png);
+}
+
+#liTele
+{
+    list-style-image: url(assets/Telegram-icon-25.png);
+}
+
+#liLink
+{
+    list-style-image: url(assets/Linkedin-icon-25.png);
+}
+
+#liGitHub
+{
+    list-style-image: url(assets/web-github-icon-25.png);
 }
 
 @media screen and (max-width: 625px)

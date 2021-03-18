@@ -15,9 +15,9 @@ function refreshTodo()
 
         for(let i of lis)
         {
-            todoList += `<li class="todoItem">
+            todoList += `<li class="todoItem"">
             <input type="checkbox" name="li1" class="checkItem">
-            <span class="listText">${i}</span>
+            <span onClick="easySelect(this)" class="listText">${i}</span>
             </li>`
         }
 
@@ -27,8 +27,6 @@ function refreshTodo()
     }
     else
         ul.innerHTML = '<ul id="list"></ul>';
-    
-    console.log("aaaa", document.getElementById("removeArea").style.display)
     
     if(document.getElementById("removeArea").style.display == "block")
     {
@@ -108,17 +106,18 @@ function switchRemoveArea()
 {
     let removeArea = document.getElementById("removeArea"),
         checks = document.getElementsByClassName("checkItem"),
-        nav = document.getElementsByTagName("nav")[0]
+        nav = document.getElementsByTagName("nav")[0],
+        list = document.getElementById("list")
 
     if(removeArea.style.display == "block")
     {
         removeArea.style.display = "none"
         nav.style.borderStyle = "none"
+        list.style.paddingTop = ""
         
         for(let checkbox of checks)
         {
             checkbox.style.display = "none"
-            checkbox.checked = false
         }
             
     }
@@ -126,8 +125,27 @@ function switchRemoveArea()
     {
         removeArea.style.display = "block"
         nav.style.borderStyle = "dotted"
+        list.style.paddingTop = "10px"
         
         for(let checkbox of checks)
             checkbox.style.display = "inline-block"
     }
+}
+
+function easySelect(span)
+{
+    let item = span.parentElement
+        check = item.children[0],
+        text = item.children[1]
+    check.click()
+    console.log(check.checked)
+
+    if(check.checked)
+    {
+        item.children[1].style.textDecoration = "line-through"
+    }
+    else
+    {
+        item.children[1].style.textDecoration = ""
+    }       
 }
