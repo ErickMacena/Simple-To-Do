@@ -1,10 +1,6 @@
 
-//localStorage.clear()
-
 function refreshTodo()
 {
-    //console.log("jsonList", JSON.parse(localStorage.getItem("jsonList")))
-
     let jsonList =  JSON.parse(localStorage.getItem("jsonList"))
     let ul = document.getElementById("list")
     
@@ -65,6 +61,9 @@ function addTodo()
 
 function excluirSel()
 {
+    let jsonList =  JSON.parse(localStorage.getItem("jsonList"))
+
+
     let removeAllCheck = document.getElementById("removeAll")
 
     if(removeAllCheck.checked)

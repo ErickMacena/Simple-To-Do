@@ -190,8 +190,6 @@ footer
     left: 0%;
     width: 94%;
 
-    height: 40px;
-    line-height: 40px;
 }
 
 #contactsLinks
@@ -209,9 +207,9 @@ footer
     margin-left: 60px;
 }
 
-#li::marker
+#findMeDown
 {
-    max-height: 25px;
+    display: none;
 }
 
 #liWhats
@@ -239,15 +237,46 @@ footer
     list-style-image: url(assets/web-github-icon-25.png);
 }
 
-@media screen and (max-width: 625px)
+@media screen and (max-width: 666px)
 {
     #removeTaks, #chcklabel, #removeAll
     {
         margin: auto;
     }
-    
-}
 
+    #contactsLinks
+    {
+        display: block;
+        max-width: 205px;
+        margin: auto;
+    }
+
+    #findMeRigth
+    {
+        display: none;
+    }
+    
+    #findMeDown
+    {
+        display: inline;
+    }
+
+    #findMeTxt, a
+    {
+        display: block;
+        margin: auto;
+    }
+
+    a
+    {
+        width: fit-content;
+        border-top: 1px black solid;
+
+        margin-top: 10px;
+    }
+
+}
+/*
 @media screen and (max-width: 500px)
 {
     #removeArea
@@ -261,4 +290,4 @@ footer
         margin: auto;
     }
     
-}
+}*/
