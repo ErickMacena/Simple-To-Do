@@ -1,5 +1,4 @@
 <h1 style="text-align: center;">My first To-do list project!</h1>
-<hr>
 
 This tool stores your list items in your browser's cache, then you can come back later and they will still be there!
 
@@ -18,7 +17,5 @@ This tool stores your list items in your browser's cache, then you can come back
 - ✅ HTML
 - ✅ CSS
 - ✅ JAVASCRIPT
-
-<hr>
 
 ### [My linkedin 👨‍💼](www.linkedin.com/in/erick-macena-94aa14160/)
