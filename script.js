@@ -1,4 +1,6 @@
 
+console.log("jsonList:", JSON.parse(localStorage.getItem("jsonList")))
+
 function refreshTodo()
 {
     let jsonList =  JSON.parse(localStorage.getItem("jsonList"))
@@ -12,22 +14,21 @@ function refreshTodo()
         for(let i of lis)
         {
             todoList += `<li class="todoItem"">
-            <input type="checkbox" name="li1" class="checkItem">
-            <span onClick="easySelect(this)" class="listText">${i}</span>
+            <input type="checkbox" class="checkItem" ${i.check}>
+            <span onClick="easySelect(this)" class="listText" style="text-decoration:${i.deco};">${i.text}</span>
             </li>`
         }
 
         todoList += '</ul>'
 
         ul.innerHTML = todoList
+
+        if(jsonList.rmvArea)
+            switchRemoveArea()
     }
     else
         ul.innerHTML = '<ul id="list"></ul>';
     
-    if(document.getElementById("removeArea").style.display == "block")
-    {
-        switchRemoveArea()
-    }
 }
 
 function addTodo()
@@ -35,23 +36,17 @@ function addTodo()
     let input = document.getElementById("todoText")
     let newTodoTxt = input.value
 
-    
     if(newTodoTxt != "")
     {
         let liArray = localStorage.getItem("jsonList")
-        
-        if(liArray === null)
-        {
-            localStorage.setItem("jsonList", JSON.stringify({lis: [newTodoTxt]}))
-        }
-        else
-        {
-            let jsonList = JSON.parse(localStorage.getItem("jsonList"))
-            
-            jsonList.lis.push(newTodoTxt)
 
-            localStorage.setItem("jsonList", JSON.stringify(jsonList))
-        }
+        liArray === null ?  localStorage.setItem("jsonList", JSON.stringify({lis:[], rmvArea: false})) : "";
+
+        let jsonList = JSON.parse(localStorage.getItem("jsonList"))
+        
+        jsonList.lis.push({check: '', text: newTodoTxt, deco: ''})
+        localStorage.setItem("jsonList", JSON.stringify(jsonList))
+        
 
         refreshTodo()
         input.value = ""
@@ -61,39 +56,27 @@ function addTodo()
 
 function excluirSel()
 {
-    let jsonList =  JSON.parse(localStorage.getItem("jsonList"))
-
-
     let removeAllCheck = document.getElementById("removeAll")
 
     if(removeAllCheck.checked)
     {
         if(confirm("Tem certeza que quer apagar todos os itens da lista?"))
-            localStorage.clear();
+            localStorage.clear()
     }
     else
     {
-        let jsonList = JSON.parse(localStorage.getItem("jsonList")),
-            checkboxes = document.getElementById("list").getElementsByClassName("checkItem"),
-            indexes = [],
-            returning = [];
+        let jsonList = JSON.parse(localStorage.getItem("jsonList"))
+        let checkboxes = document.getElementById("list").getElementsByClassName("checkItem")
+        let returning = []
 
-        for(let checkbox in checkboxes)
+        for(let i in jsonList.lis)
         {
-            if(checkboxes[checkbox].checked)
-                indexes.push(checkbox)
-        }
-   
-        for(let i of indexes)
-            jsonList.lis[i] = null;
-        
-        for(let i of jsonList.lis)
-        {
-            if(i !== null)
-                returning.push(i)
+            if(!checkboxes[i].checked)
+                returning.push(jsonList.lis[i])
         }
 
         jsonList.lis = returning
+        jsonList.rmvArea = false
 
         localStorage.setItem("jsonList", JSON.stringify(jsonList))
     }
@@ -103,10 +86,12 @@ function excluirSel()
 
 function switchRemoveArea()
 {
-    let removeArea = document.getElementById("removeArea"),
-        checks = document.getElementsByClassName("checkItem"),
-        nav = document.getElementsByTagName("nav")[0],
-        list = document.getElementById("list")
+    let jsonList = JSON.parse(localStorage.getItem("jsonList"))
+
+    let removeArea = document.getElementById("removeArea")
+    let checks = document.getElementsByClassName("checkItem")
+    let nav = document.getElementsByTagName("nav")[0]
+    let list = document.getElementById("list")
 
     if(removeArea.style.display == "block")
     {
@@ -118,7 +103,8 @@ function switchRemoveArea()
         {
             checkbox.style.display = "none"
         }
-            
+        
+        jsonList.rmvArea = false;
     }
     else
     {
@@ -128,23 +114,56 @@ function switchRemoveArea()
         
         for(let checkbox of checks)
             checkbox.style.display = "inline-block"
+        
+        jsonList.rmvArea = true;
     }
+
+    localStorage.setItem("jsonList", JSON.stringify(jsonList))
+    
+    
 }
 
 function easySelect(span)
 {
     let item = span.parentElement
-        check = item.children[0],
-        text = item.children[1]
-    check.click()
-    console.log(check.checked)
+    let check = item.children[0]
 
+    check.click()
+    
     if(check.checked)
     {
-        item.children[1].style.textDecoration = "line-through"
+        span.style.textDecoration = "line-through"
     }
-    else
+    else 
     {
-        item.children[1].style.textDecoration = ""
-    }       
+        span.style.textDecoration = ""
+    }
+    
+    scratcher()
+}
+
+function scratcher()
+{
+    let checks = Array.from(document.getElementById("list").getElementsByClassName("checkItem"))
+    let jsonList =  JSON.parse(localStorage.getItem("jsonList"))
+    console.log("scratcher:", jsonList)
+    let father
+
+    for(let i in checks)
+    {
+        if(checks[i].checked)
+        {
+            
+            jsonList.lis[i].deco = "line-through";
+            jsonList.lis[i].check = "checked"
+        }
+        else
+        {
+            jsonList.lis[i].deco = '';
+            jsonList.lis[i].check = '';
+        }
+    }
+
+    localStorage.setItem("jsonList", JSON.stringify(jsonList))
+
 }
