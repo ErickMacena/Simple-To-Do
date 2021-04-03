@@ -1,6 +1,4 @@
 
-console.log("jsonList:", JSON.parse(localStorage.getItem("jsonList")))
-
 function refreshTodo()
 {
     let jsonList =  JSON.parse(localStorage.getItem("jsonList"))
@@ -146,7 +144,6 @@ function scratcher()
 {
     let checks = Array.from(document.getElementById("list").getElementsByClassName("checkItem"))
     let jsonList =  JSON.parse(localStorage.getItem("jsonList"))
-    console.log("scratcher:", jsonList)
     let father
 
     for(let i in checks)
