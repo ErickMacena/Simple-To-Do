@@ -18,4 +18,4 @@ This tool stores your list items in your browser's cache, then you can come back
 - ✅ CSS
 - ✅ JAVASCRIPT
 
-### [My linkedin 👨‍💼](www.linkedin.com/in/erick-macena-94aa14160/)
+### [My linkedin 👨‍💼](https://www.linkedin.com/in/erick-macena-94aa14160/)
