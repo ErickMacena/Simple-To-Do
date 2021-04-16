@@ -1,4 +1,4 @@
-<h1 style="text-align: center;">My first To-do list project!</h1>
+<h1 style="margin: auto;">My first To-do list project!</h1>
 
 This tool stores your list items in your browser's cache, then you can come back later and they will still be there!
 
