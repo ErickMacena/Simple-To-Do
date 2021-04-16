@@ -1,4 +1,4 @@
-<h1 style="margin: auto;">My first To-do list project!</h1>
+<h1 align="center">My first To-do list project!</h1>
 
 This tool stores your list items in your browser's cache, then you can come back later and they will still be there!
 
@@ -12,7 +12,7 @@ This tool stores your list items in your browser's cache, then you can come back
 
 <hr>
 
-<h2 style="text-align: center;">Technologies Used</h2>
+<h2 align="center">Technologies Used</h2>
 
 - ✅ HTML
 - ✅ CSS
